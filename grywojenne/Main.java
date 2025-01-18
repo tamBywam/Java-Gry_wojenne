@@ -14,8 +14,5 @@ public class Main {
         g2.doManeuvers(g2.getArmy());
 
         g1.attack(g2);
-
-        System.out.println("G1 gold: " + g1.getGold() + ", strength: " + g1.getTotalStrength());
-        System.out.println("G2 gold: " + g2.getGold() + ", strength: " + g2.getTotalStrength());
     }
 }
