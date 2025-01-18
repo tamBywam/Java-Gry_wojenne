@@ -43,7 +43,6 @@ public class GeneralTest {
         Secretary s = new Secretary();
         g.setSecretary(s);
         g.buySoldier(Rank.PRIVATE);
-        // No exception means success
         Assert.assertNotNull(s.getReports());
     }
 

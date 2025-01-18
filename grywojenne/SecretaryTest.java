@@ -22,7 +22,7 @@ public class SecretaryTest {
     public void testPrintReports() {
         Secretary s = new Secretary();
         s.logAction("Just logging");
-        s.printReports(); // Ensure no exception
+        s.printReports();
     }
 }
 
