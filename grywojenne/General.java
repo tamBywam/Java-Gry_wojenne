@@ -67,6 +67,9 @@ public class General implements Serializable {
         if (!g.army.isEmpty()) {
             Soldier randomSoldier = g.army.get(new Random().nextInt(g.army.size()));
             randomSoldier.decreaseExperience();
+            if (!randomSoldier.isAlive()) {
+                g.army.remove(randomSoldier);
+            }
         }
     }
 
@@ -74,10 +77,11 @@ public class General implements Serializable {
         int cost = 10 * rank.getValue();
         if (gold >= cost) {
             gold -= cost;
-            army.add(new Soldier(rank));
-        }
-        if (secretary != null && gold >= 10 * rank.getValue()) {
-            secretary.logAction("Bought a " + rank + " soldier.");
+            Soldier s = SoldierFactory.createSoldier(rank);
+            army.add(s);
+            if (secretary != null) {
+                secretary.logAction("Bought a " + rank + " soldier.");
+            }
         }
     }
 

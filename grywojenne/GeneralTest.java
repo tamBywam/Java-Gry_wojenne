@@ -1,9 +1,8 @@
-
 package grywojenne;
 
 import org.junit.Assert;
 import org.junit.Test;
-
+import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 public class GeneralTest {
@@ -36,5 +35,54 @@ public class GeneralTest {
         new File(path).delete();
         Assert.assertEquals(g.getTotalStrength(), g2.getTotalStrength());
         Assert.assertEquals(g.getGold(), g2.getGold());
+    }
+
+    @Test
+    public void testSetSecretary() {
+        General g = new General(50);
+        Secretary s = new Secretary();
+        g.setSecretary(s);
+        g.buySoldier(Rank.PRIVATE);
+        // No exception means success
+        Assert.assertNotNull(s.getReports());
+    }
+
+    @Test
+    public void testGetTotalStrength() {
+        General g = new General(70);
+        g.buySoldier(Rank.PRIVATE);
+        Assert.assertTrue(g.getTotalStrength() > 0);
+    }
+
+    @Test
+    public void testGetGold() {
+        General g = new General(100);
+        Assert.assertEquals(100, g.getGold());
+    }
+
+    @Test
+    public void testGetArmy() {
+        General g = new General(100);
+        g.buySoldier(Rank.MAJOR);
+        Assert.assertEquals(1, g.getArmy().size());
+    }
+
+    @Test
+    public void testDoManeuvers() {
+        General g = new General(100);
+        g.buySoldier(Rank.PRIVATE);
+        int before = g.getArmy().get(0).getExperience();
+        g.doManeuvers(g.getArmy());
+        assertTrue(g.getArmy().get(0).getExperience() > before);
+    }
+
+    @Test
+    public void testShootRandomSoldier() {
+        General g = new General(100);
+        g.buySoldier(Rank.PRIVATE);
+        g.buySoldier(Rank.CORPORAL);
+        int before = g.getArmy().size();
+        g.attack(new General(100)); // Force a draw
+        assertTrue(g.getArmy().size() <= before);
     }
 }

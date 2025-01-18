@@ -1,7 +1,7 @@
-
 package grywojenne;
 
-public class Soldier {
+public class Soldier extends Person implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private Rank rank;
     private int experience;
 
@@ -10,6 +10,7 @@ public class Soldier {
         this.experience = 1;
     }
 
+    @Override
     public int getStrength() {
         return rank.getValue() * experience;
     }
@@ -18,11 +19,15 @@ public class Soldier {
         experience++;
         if (experience >= 5 * rank.getValue()) {
             promote();
+            return;
         }
     }
 
     public void decreaseExperience() {
         experience--;
+        if (experience <= 0) {
+            experience = 0;
+        }
     }
 
     private void promote() {
@@ -39,9 +44,10 @@ public class Soldier {
             default:
                 break;
         }
-        experience = 1;
+        experience = 0;
     }
 
+    @Override
     public boolean isAlive() {
         return experience > 0;
     }
