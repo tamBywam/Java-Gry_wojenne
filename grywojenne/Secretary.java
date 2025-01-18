@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Secretary {
+    // Tworzenie klasy Secretary
     private List<String> reports = new ArrayList<>();
 
     public void logAction(String action) {

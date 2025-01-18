@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class General implements Serializable {
+    // Kompozycja: General zawiera listę obiektów Soldier oraz obiekt Secretary
     private int gold;
     private List<Soldier> army = new ArrayList<>();
     private transient Secretary secretary;
@@ -18,6 +19,7 @@ public class General implements Serializable {
         this.secretary = secretary;
     }
 
+    // Implementacja algorytmu manewrów
     public void doManeuvers(List<Soldier> group) {
         int cost = 0;
         for (Soldier s : group) {
@@ -34,6 +36,7 @@ public class General implements Serializable {
         }
     }
 
+    // Implementacja algorytmu ataku
     public void attack(General opponent) {
         int myStrength = getTotalStrength();
         int opponentStrength = opponent.getTotalStrength();
@@ -73,6 +76,7 @@ public class General implements Serializable {
         }
     }
 
+    // Implementacja algorytmu zakupu żołnierzy
     public void buySoldier(Rank rank) {
         int cost = 10 * rank.getValue();
         if (gold >= cost) {

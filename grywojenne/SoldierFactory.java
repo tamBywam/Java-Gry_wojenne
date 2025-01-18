@@ -1,8 +1,8 @@
 package grywojenne;
 
 public class SoldierFactory {
+    // Implementacja wzorca fabryki (Factory Pattern)
     public static Soldier createSoldier(Rank rank) {
-        // Could add logic for different soldier types
         return new Soldier(rank);
     }
 }

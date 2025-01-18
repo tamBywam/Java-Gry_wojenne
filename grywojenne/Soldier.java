@@ -1,6 +1,7 @@
 package grywojenne;
 
 public class Soldier extends Person implements java.io.Serializable {
+    // Dziedziczenie po klasie Person
     private static final long serialVersionUID = 1L;
     private Rank rank;
     private int experience;
@@ -15,6 +16,7 @@ public class Soldier extends Person implements java.io.Serializable {
         return rank.getValue() * experience;
     }
 
+    // Polimorfizm: implementacja metody increaseExperience
     public void increaseExperience() {
         experience++;
         if (experience >= 5 * rank.getValue()) {
@@ -23,6 +25,7 @@ public class Soldier extends Person implements java.io.Serializable {
         }
     }
 
+    // Polimorfizm: implementacja metody decreaseExperience
     public void decreaseExperience() {
         experience--;
         if (experience <= 0) {

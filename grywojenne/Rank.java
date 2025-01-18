@@ -1,7 +1,7 @@
-
 package grywojenne;
 
 public enum Rank {
+    // Tworzenie klasy Rank
     PRIVATE(1),
     CORPORAL(2),
     CAPTAIN(3),
